@@ -17,8 +17,39 @@ samples, guidance on mobile development, and a full API reference.
 
 # Notes
 ## 1. Getx
-se crea Se crea una carpeta “Controllers” para definir los controladores que tendrán
-```flutter
-int helloworld = 0;
+* se crea Se crea una carpeta “Controllers” para definir los controladores que tendrán
+
+* Se crea un archivo “.dart” controller con extensión de getx.
+
+* Se crea la variable que se desea modificar en ejecucion y se le añade ".obs"
+```dart
+var counter = 0.obs;
+
 ```
+y posterior a eso se crea su metodo en donde se especifica las acciones que hará
+
+```dart
+void increment() {
+    counter++;
+  }
+
+```
+
+en el widget donde se vaya a usar se debe definir un controlador de instancia get:
+```dart
+
+final CounterController counterController = Get.put(CounterController());
+
+```
+luego se coloca el controlador especificando la instancia y lo que queremos de la instancia.
+
+```dart
+Text("Clicks: ${counterController.counter.value}"),
+```
+
+
+<!-- 
+```dart
+int helloworld = 0;
+``` -->
 
