@@ -1,12 +1,45 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:web_flutter/constants/style.dart';
+import 'package:web_flutter/helpers/plarform.dart';
 import 'package:web_flutter/helpers/responsiveness.dart';
 
 import 'custom_text.dart';
 
 AppBar topNavigationBar(
+  BuildContext context,
+  GlobalKey<ScaffoldState> key,
+) {
+  return isMobile() ? _appBarMobile() : _appBarWeb(context, key);
+}
+
+AppBar _appBarMobile() {
+  return AppBar(
+    backgroundColor: Colors.purple,
+    title: Row(
+      children: [
+        Expanded(child: Container()),
+        CustomText(
+            color: dark, size: null, text: "Anda Parkinson", weight: null),
+        IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
+        IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
+        Container(
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(30)),
+          child: Container(
+              padding: EdgeInsets.all(2),
+              margin: EdgeInsets.all(2),
+              child: CircleAvatar(
+                  child: Icon(
+                Icons.person_outline,
+                color: dark,
+              ))),
+        ),
+      ],
+    ),
+  );
+}
+
+AppBar _appBarWeb(
   BuildContext context,
   GlobalKey<ScaffoldState> key,
 ) {

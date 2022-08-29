@@ -1,6 +1,7 @@
-import 'dart:html';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 const int largeScreenzise = 1366;
 const int mediumScreenzise = 768;
@@ -12,12 +13,15 @@ class ResponsiveWidget extends StatelessWidget {
   final Widget mediumScreen;
   final Widget smallScreen;
   final Widget customScreen;
+  final Widget mobileScreen;
+
   const ResponsiveWidget({
     Key? key,
     required this.largeScreen,
     required this.mediumScreen,
     required this.smallScreen,
     required this.customScreen,
+    required this.mobileScreen,
   }) : super(key: key);
 
   static bool isSmallScreen(BuildContext context) =>
@@ -40,13 +44,20 @@ class ResponsiveWidget extends StatelessWidget {
       builder: (context, constrains) {
         double _width = constrains.maxWidth;
 
-        if (_width >= largeScreenzise) {
-          return largeScreen;
-        } else if (_width < largeScreenzise && _width >= mediumScreenzise) {
-          return mediumScreen == null ? largeScreen : mediumScreen;
-        } else {
-          return smallScreen == null ? largeScreen : smallScreen;
+        ///verify if is on web or mobile
+        if (kIsWeb) {
+          if (_width >= largeScreenzise) {
+            return largeScreen;
+          } else if (_width < largeScreenzise && _width >= mediumScreenzise) {
+            return mediumScreen;
+          } else {
+            return smallScreen;
+          }
+        } else if (Platform.isAndroid || Platform.isIOS) {
+          return mobileScreen;
         }
+
+        return largeScreen;
       },
     );
   }

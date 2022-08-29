@@ -5,6 +5,8 @@ import 'package:web_flutter/widgets/large_screen.dart';
 import 'package:web_flutter/widgets/small_screen.dart';
 import 'package:web_flutter/widgets/top_nav.dart';
 
+import 'mobile_screen.dart';
+
 class SiteLayout extends StatelessWidget {
   SiteLayout({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey();
@@ -20,6 +22,7 @@ class SiteLayout extends StatelessWidget {
           smallScreen: SmallScreen(),
           mediumScreen: LargeScreen(),
           customScreen: LargeScreen(),
+          mobileScreen: MobileScreen(),
         ));
   }
 }
