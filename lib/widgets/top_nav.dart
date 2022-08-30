@@ -9,7 +9,7 @@ AppBar topNavigationBar(
   BuildContext context,
   GlobalKey<ScaffoldState> key,
 ) {
-  return isMobile() ? _appBarMobile() : _appBarWeb(context, key);
+  return isWeb() ? _appBarWeb(context, key) : _appBarMobile();
 }
 
 AppBar _appBarMobile() {
@@ -84,7 +84,10 @@ AppBar _appBarWeb(
         Stack(
           children: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('notifications');
+                  print('press notifications');
+                },
                 icon: Icon(
                   Icons.notifications,
                   color: dark.withOpacity(.7),

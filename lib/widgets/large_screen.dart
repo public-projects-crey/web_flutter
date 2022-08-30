@@ -14,7 +14,12 @@ class LargeScreen extends StatelessWidget {
         ),
         Expanded(
           flex: 5,
-          child: Container(color: Colors.blue),
+          child: Container(
+            color: Colors.blue,
+            child: Center(
+              child: Text("Large Screen"),
+            ),
+          ),
         ),
       ],
     );
